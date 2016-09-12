@@ -11,53 +11,55 @@
 
 package programmingassignment1;
 
-import java.util.Scanner;
+import java.util.Arrays;
+import javax.swing.JOptionPane;
 
 public class ProgrammingAssignment1 {
     public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);    // Create Scanner Object
-        
         LotteryTicket lottoTicket = new LotteryTicket();    // Lotto ticket
         LotteryTicket fantasyTicket = new LotteryTicket();  // Fantasy 5 ticket
         
         lottoTicket.createTicket(6);
         fantasyTicket.createTicket(5);
         
-        System.out.println("If you want to see the lotto winning numbers " +
-                           "type lotto");
-        System.out.println("If you want to see the fantasy five winning " +
-                           " numbers type fantasy");
-        System.out.print("If you want to see both type both: ");
+        Object[] options = {"lotto", "fantasy", "both"};
         
-        String userInput = in.nextLine();
-        userInput.toLowerCase();
+        String userInput = (String)JOptionPane.showInputDialog(
+                    null,
+                    "Which Florida Lottery Ticket would you like to print?\n",
+                    "Florida Lottery",
+                    JOptionPane.PLAIN_MESSAGE,
+                    null,
+                    options,
+                    "lotto");
         
-        switch (userInput) {
-            case "lotto":
-                System.out.print("The lotto winning numbers are ");
-                lottoTicket.showNumbers();
-                System.out.println();
-                break;
-            case "fantasy":
-                System.out.print("The fantasy 5 winning numbers are ");
-                fantasyTicket.showNumbers();
-                System.out.println();
-                break;
-            case "both":
-                System.out.print("The lotto winning numbers are ");
-                lottoTicket.showNumbers();
-                System.out.println();
-                System.out.print("The fantasy 5 winning numbers are ");
-                fantasyTicket.showNumbers();
-                System.out.println();
-                break;
-            default:
-                System.out.println("Sorry I couldn't recognize your  command " +
-                        "please try again!");
-                break;
+        if ( (userInput != null) && (userInput.length() > 0) ) {
+            if (userInput.equals("lotto"))
+            {
+                JOptionPane.showMessageDialog(
+                    null,
+                    "The lotto winning numbers are " +
+                    Arrays.toString(lottoTicket.createTicket(6)).replace("[", "").replace("]", ""));
+            }
+            else if (userInput.equals("fantasy"))
+            {
+                JOptionPane.showMessageDialog(
+                    null,
+                    "The fantasy five winning numbers are " +
+                    Arrays.toString(fantasyTicket.createTicket(5)).replace("[", "").replace("]", ""));
+            }    
+            else if (userInput.equals("both"))
+            {
+                JOptionPane.showMessageDialog(
+                    null,
+                    "The lotto winning numbers are " +
+                    Arrays.toString(lottoTicket.createTicket(6)).replace("[", "").replace("]", "") +
+                    "\nThe fantasy 5 winning numbers are " +
+                    Arrays.toString(fantasyTicket.createTicket(5)).replace("[", "").replace("]", ""));          
+            }
         }
-                               
-        System.out.println("Thank you for playing!");
-    }
-    
+        else
+            JOptionPane.showMessageDialog(null,
+                    "Please choose one of the options!");
+    }  
 }

@@ -26,16 +26,16 @@ public class LotteryTicket {
         
         // else if ticketType is 6 a lotto ticket is being created so
         // ticket array must be of size 6
-    public void createTicket(int ticketType)
+    public int[] createTicket(int ticketSyze)
     {
-        ticket = new int[ticketType];
+        ticket = new int[ticketSyze];
         
-        int numRange = 0;   //Upper limit of possible random numbers
+        int numRange;   //Upper limit of possible random numbers
         
         
         //Numrange will be either 36 or 53 depending on the ticket type
         //being created
-        if (ticketType == 5)
+        if (ticketSyze == 5)
             numRange = 36;
         else
             numRange = 53;
@@ -53,15 +53,8 @@ public class LotteryTicket {
             // if number doesn't exist add it to ticket array
             ticket[i] = number;
         }
-    }
-    
-    // Prints all numbers in a ticket
-    
-    public void showNumbers()
-    {
-        for (int i=0; i<ticket.length; i++)
-        {
-            System.out.print(ticket[i] + " ");
-        }
+        
+        return this.ticket;
+        
     }
 }
