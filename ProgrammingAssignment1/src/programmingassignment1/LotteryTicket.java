@@ -26,16 +26,16 @@ public class LotteryTicket {
         
         // else if ticketType is 6 a lotto ticket is being created so
         // ticket array must be of size 6
-    public int[] createTicket(int ticketSyze)
+    public int[] createTicket(int ticketSize)
     {
-        ticket = new int[ticketSyze];
+        ticket = new int[ticketSize];
         
         int numRange;   //Upper limit of possible random numbers
         
         
         //Numrange will be either 36 or 53 depending on the ticket type
         //being created
-        if (ticketSyze == 5)
+        if (ticketSize == 5)
             numRange = 36;
         else
             numRange = 53;
